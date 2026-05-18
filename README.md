@@ -176,6 +176,10 @@ Built with a fintech-inspired dark UI featuring glassmorphism cards, gold gradie
 - Confidence scoring system
 - Dynamic match-state analytics
 - Live prediction updates
+- SHAP-based explainable AI dashboard
+- Match momentum analysis
+- Prediction confidence meter
+- Interactive win probability progression
 
 </td>
 
@@ -431,7 +435,7 @@ git push origin feature/your-feature-name
 | UI | Mobile responsiveness | Medium |
 | UI | Team stat pills | Easy |
 | ML | IPL 2021–2024 integration | Easy |
-| ML | Random Forest / XGBoost toggle | Hard |
+| ML | SHAP interaction visualizations | Medium |
 | ML | Cross-validation metrics | Medium |
 | Feature | Match report PDF export | Hard |
 | Feature | Head-to-head analytics | Medium |
@@ -472,6 +476,19 @@ Project Admin — GSSoC '26 & NSoC 2026
 <br/>
 
 <div align="center">
+## Screenshots
+
+### Dashboard Overview
+![Dashboard](screenshots/dashboard_overview.png)
+
+### Confidence Meter
+![Confidence Meter](screenshots/confidence_meter.png)
+
+### Momentum Analysis
+![Momentum](screenshots/momentum_analysis.png)
+
+### Explainable AI Dashboard
+![XAI](screenshots/xai_dashboard.png)
 
 ## Support the Project
 
