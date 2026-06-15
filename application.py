@@ -916,6 +916,15 @@ team_data = {
 }
 
 # -----------------------------------
+# DATA LOADING
+# -----------------------------------
+@st.cache_data
+def load_data():
+    matches = pd.read_csv("matches.csv")
+    deliveries = pd.read_csv("deliveries.csv")
+    return matches, deliveries
+
+# -----------------------------------
 # MODEL
 # -----------------------------------
 def get_model(model_name='logistic'):
@@ -937,8 +946,7 @@ def train_model(model_name='logistic'):
         except Exception as e:
             logging.error(f"Failed to load cached model from {model_path}: {e}")
 
-    matches = pd.read_csv("matches.csv")
-    deliveries = pd.read_csv("deliveries.csv")
+    matches, deliveries = load_data()
 
     df = deliveries.merge(matches, left_on='match_id', right_on='id')
 
@@ -1012,8 +1020,7 @@ def train_model(model_name='logistic'):
 def evaluate_model(model_name='logistic'):
     pipe = train_model(model_name)
 
-    matches = pd.read_csv("matches.csv")
-    deliveries = pd.read_csv("deliveries.csv")
+    matches, deliveries = load_data()
 
     df = deliveries.merge(matches, left_on='match_id', right_on='id')
 
@@ -1893,7 +1900,7 @@ if st.session_state.page == "Team Analysis":
 
     team = st.session_state.selected_team
     
-    matches_df = pd.read_csv("matches.csv")
+    matches_df, _ = load_data()
 
     team_matches = matches_df[
         (matches_df["team1"] == team) |
@@ -1984,7 +1991,7 @@ if st.session_state.page == "Team Analysis":
      # Team Strength Analysis
         st.subheader("📈 Team Statistics")
         
-        deliveries_df = pd.read_csv("deliveries.csv")
+        _, deliveries_df = load_data()
 
         team_batting = deliveries_df[
         deliveries_df["batting_team"] == team
