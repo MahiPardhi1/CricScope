@@ -389,12 +389,21 @@ def resolve_team_name(raw_name: str) -> str:
 
 
 # ───────────────────────────────────────────
+#  DATA LOADING
+# ───────────────────────────────────────────
+@st.cache_data
+def load_data():
+    matches = pd.read_csv("matches.csv")
+    deliveries = pd.read_csv("deliveries.csv")
+    return matches, deliveries
+
+
+# ───────────────────────────────────────────
 #  MODEL (same as application.py)
 # ───────────────────────────────────────────
 @st.cache_resource
 def train_model():
-    matches = pd.read_csv("matches.csv")
-    deliveries = pd.read_csv("deliveries.csv")
+    matches, deliveries = load_data()
 
     df = deliveries.merge(matches, left_on='match_id', right_on='id')
 
